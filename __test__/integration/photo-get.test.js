@@ -20,7 +20,7 @@ describe('GET api/v1/photo', function() {
         .field('name', 'stan')
         .field('description', 'this is stan')
         .field('galleryId', `${this.mockUser.gallery._id}`)
-        .attach('image', `${__dirname}/../../temp/krappa.jpg`)
+        .attach('image', `${__dirname}/assets/krappa.jpg`)
         .then(res => this.resBody = res.body);
     }));
     it('should return a 200 success status code and an array of ids', () => {

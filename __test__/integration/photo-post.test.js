@@ -16,7 +16,7 @@ describe('POST api/v1/photo', function() {
       .field('name', 'stan')
       .field('description', 'this is stan')
       .field('galleryId', `${this.mockUser.gallery._id}`)
-      .attach('image', `${__dirname}/../../temp/krappa.jpg`)
+      .attach('image', `${__dirname}/assets/krappa.jpg`)
       .then((res) => this.res = res);
   }));
   afterAll(server.stop);
@@ -35,14 +35,14 @@ describe('POST api/v1/photo', function() {
         .field('name', 'stan')
         .field('description', 'this is stan')
         .field('galleryId', `${this.mockUser.gallery._id}`)
-        .attach('image', `${__dirname}/../../temp/krappa.jpg`)
+        .attach('image', `${__dirname}/assets/krappa.jpg`)
         .catch(err => expect(err.status).toEqual(401));
     });
     it('should return a 400 bad request on improperly formatted body', () => {
       return superagent.post(`:${process.env.PORT}/api/v1/photo`)
         .set('Authorization', `Bearer ${this.mockUser.token}`)
         .field('galleryId', `${this.mockUser.gallery._id}`)
-        .attach('image', `${__dirname}/../../temp/krappa.jpg`)
+        .attach('image', `${__dirname}/assets/krappa.jpg`)
         .catch(err => expect(err.status).toEqual(400));
     });
   });
