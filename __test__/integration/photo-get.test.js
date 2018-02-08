@@ -27,7 +27,7 @@ describe('GET api/v1/photo', function() {
       return superagent.get(`:${process.env.PORT}/api/v1/photo`)
         .set('Authorization', `Bearer ${this.mockUser.token}`)
         .then(res => {
-          console.log(res.body);
+          expect(res.body[0]).not.toBeNull();
           expect(res.status).toEqual(200);
         });
     });
@@ -35,7 +35,7 @@ describe('GET api/v1/photo', function() {
       return superagent.get(`:${process.env.PORT}/api/v1/photo/${this.resBody._id}`)
         .set('Authorization', `Bearer ${this.mockUser.token}`)
         .then(res => {
-          console.log(res.body);
+          expect(res.body._id).toEqual(`${this.resBody._id}`);
           expect(res.status).toEqual(200);
         });
     });
