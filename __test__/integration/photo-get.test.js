@@ -41,22 +41,16 @@ describe('GET api/v1/photo', function() {
     });
 
   });
-//   describe('invalid request', () => {
-//     it('should return a 401 not authorized given back token', () => {
-//       return superagent.get(`:${process.env.PORT}/api/v1/photo`)
-//         .set('Authorization', `Bearer BADTOKEN`)
-//         .field('name', 'stan')
-//         .field('description', 'this is stan')
-//         .field('galleryId', `${this.mockUser.gallery._id}`)
-//         .attach('image', `${__dirname}/../../temp/krappa.jpg`)
-//         .catch(err => expect(err.status).toEqual(401));
-//     });
-//     it('should return a 400 bad request on improperly formatted body', () => {
-//       return superagent.get(`:${process.env.PORT}/api/v1/photo`)
-//         .set('Authorization', `Bearer ${this.mockUser.token}`)
-//         .field('galleryId', `${this.mockUser.gallery._id}`)
-//         .attach('image', `${__dirname}/../../temp/krappa.jpg`)
-//         .catch(err => expect(err.status).toEqual(400));
-//     });
-//   });
+  describe('invalid request', () => {
+    it('should return a 401 not authorized given back token', () => {
+      return superagent.get(`:${process.env.PORT}/api/v1/photo`)
+        .set('Authorization', `Bearer BADTOKEN`)
+        .catch(err => expect(err.status).toEqual(401));
+    })
+    it('should return a 404 on a request that doenst exist', () => {
+      return superagent.get(`:${process.env.PORT}/api/v1/photo/DOESNTEXIST`)
+        .set('Authorization', `Bearer ${this.mockUser.token}`)
+        .catch(err => expect(err.status).toEqual(404));
+    });
+  });
 });

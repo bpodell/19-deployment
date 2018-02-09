@@ -28,11 +28,11 @@ describe('DELETE api/v1/gallery', function() {
 
   describe('invalid request', () => {
     it('should return a 401 not authorized given no token', () => {
-      return superagent.get(`:${process.env.PORT}/api/v1/gallery`)
+      return superagent.delete(`:${process.env.PORT}/api/v1/gallery`)
         .catch(err => expect(err.status).toEqual(401));
     });
     it('should return a 404 valid request with an id not found', () => {
-      return superagent.get(`:${process.env.PORT}/api/v1/gallery/kappa123`)
+      return superagent.delete(`:${process.env.PORT}/api/v1/gallery/kappa123`)
         .set('Authorization', `Bearer ${this.mockUser.token}` )
         .catch(err => expect(err.status).toEqual(404));
     });

@@ -39,5 +39,10 @@ describe('GET api/v1/gallery', function() {
         .set('Authorization', `Bearer ${this.mockUser.token}` )
         .catch(err => expect(err.status).toEqual(404));
     });
+    // it('should return a 400 valid request with an id not found', () => {
+    //   return superagent.get(`:${process.env.PORT}/api/v1/gallery/${this.mockUser.gallery._id}`)
+    //     .set('Authorization')
+    //     .catch(err => expect(err.status).toEqual(401));
+    // });
   });
 });

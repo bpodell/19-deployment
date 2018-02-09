@@ -20,8 +20,8 @@ module.exports = router => {
     })
 
     .get(bearerAuthMiddleware,(request,response) => {
-      if(request.params._id){
-        return Gallery.findById(request.params._id)
+      if(request.params.id){
+        return Gallery.findById(request.params.id)
           .then(gallery => response.status(200).json(gallery))
           .catch(error => errorHandler(error,response));
       }
@@ -32,7 +32,7 @@ module.exports = router => {
 
           response.status(200).json(galleriesIds);
         })
-        .catch(error => errorHandler(error,response));
+        // .catch(error => errorHandler(error,response));
     })
     .put(bearerAuthMiddleware, bodyParser, (request,response) => {
       Gallery.findOne({
@@ -53,7 +53,7 @@ module.exports = router => {
           if(gallery.userId.toString() === request.user._id.toString())
             return gallery.remove();
 
-          return errorHandler(new Error(ERROR_MESSAGE),response);
+        //   return errorHandler(new Error(ERROR_MESSAGE),response);
         })
         .then(() => response.sendStatus(204))
         .catch(error => errorHandler(error,response));

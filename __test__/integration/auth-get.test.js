@@ -55,6 +55,10 @@ describe('POST /api/v1/auth', function() {
     it('should return a status 400 given no request body', () => {
       expect(this.errRes.status).toEqual(401);
     });
+    it('should return an error if there is no auth headers', () => {
+      return superagent.get(`:${process.env.PORT}/api/v1/signin`)
+        .catch(err => expect(err.status).toEqual(401));
+    });
     it('should return a status 404 on an invalid path', () => {
       return superagent.get(`:${process.env.PORT}/api/v1/animal`)
         .catch(err => expect(err.status).toEqual(404));

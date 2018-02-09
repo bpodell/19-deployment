@@ -38,6 +38,6 @@ module.exports = function(router) {
       Photo.find({userID: req.query.userId})
         .then(photos => photos.map(photo => photo._id))
         .then(ids => res.status(200).json(ids))
-        .catch(err => errorHandler(err, res));
+        // .catch(err => errorHandler(err, res));
     });
 };
